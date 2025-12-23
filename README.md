@@ -18,13 +18,19 @@ Repository ini dibuat untuk memenuhi **Tugas Praktikum Node.js & Express.js**. P
 ```text
 nodejs-crud-restapi/
 ├── config/
-│   └── database.js      # Konfigurasi koneksi database
+│   └── db.js      # Konfigurasi koneksi database
 ├── controller/
 │   ├── categoryController.js
-│   └── productController.js
+│   ├── productController.js
+|   └── userController.js
+├── images/
+|   └── ...
+├── node_modules/
+|   └── ...
 ├── routes/
-│   └── index.js         # Main routing
+│   └── Route.js         # Main routing
 ├── .env                 # Konfigurasi environment (DB credentials)
+├── package-lock.json
 ├── package.json         # Dependencies
 ├── server.js            # Entry point
 └── README.md            # Dokumentasi project
@@ -60,6 +66,16 @@ CREATE TABLE products (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
+);
+
+-- 3. Tabel Users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 ```
@@ -125,6 +141,14 @@ Gunakan **Postman** atau **Insomnia** untuk melakukan testing pada URL berikut:
 | **PUT** | `/api/products/:id` | Edit produk | `{ "category_id": 1, "name": "Laptop Pro", "price": 7000000 }` |
 | **DELETE** | `/api/products/:id` | Hapus produk | - |
 
+###  Users (user)
+| Method | Endpoint | Deskripsi | Body Request (JSON) |
+| --- | --- | --- | --- |
+| **GET** | `/api/users` | Lihat semua user | - |
+| **GET** | `/api/users/:id` | Lihat detail user | - |
+| **POST** | `/api/users` | Tambah user | `{"name": "Muzaqi Nur Arifin", "email" : "muzaqi.nurar4@gmail.com", "password" : "dfjkdskjfkldsj"}` |
+| **PUT** | `/api/users/:id` | Edit user | `{"name": "Muzaqi Nur Arifin", "email" : "muzaqi.nurar4@gmail.com", "password" : "ganti password" }` |
+| **DELETE** | `/api/users/:id` | Hapus user | - |
 ---
 
 ## 📸 Screenshot Hasil Testing
@@ -150,6 +174,20 @@ Gunakan **Postman** atau **Insomnia** untuk melakukan testing pada URL berikut:
 7. **DEL (Delete) Product**
 ![Screenshot Hasil](images/7.png)
 
+8. **Get All Users**
+![Screenshot Hasil](images/8.png)
+
+9. **Get Users by Id**
+![Screenshot Hasil](images/9.png)
+
+10. **POST User**
+![Screenshot Hasil](images/10.png)
+
+11. **PUT (Update) User**
+![Screenshot Hasil](images/11.png)
+
+12. **DEL (Delete) User**
+![Screenshot Hasil](images/12.png)
 ---
 
 Copyright © 2025 Muzaqi Nur Arifin.

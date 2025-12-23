@@ -15,6 +15,14 @@ import {
     deleteProduct
 } from '../controller/productController.js';
 
+import {
+    getUsers,
+    insertUsers,
+    showById,
+    updateUser,
+    deleteUser
+} from '../controller/userController.js';
+
 const router = express.Router();
 
 router.get('/categories', getAllCategories);
@@ -28,5 +36,11 @@ router.get('/products/:id', getProductById);
 router.post('/products', createProduct);
 router.put('/products/:id', updateProduct);
 router.delete('/products/:id', deleteProduct);
+
+router.get("/users", getUsers);
+router.get("/users/:id", showById);
+router.post("/users", insertUsers);
+router.put("/users/:id", updateUser);
+router.delete("/users/:id", deleteUser);
 
 export default router;
