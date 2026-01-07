@@ -3,7 +3,7 @@ import db from '../config/db.js';
 export const getAllProducts = (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
         if (err) return res.status(500).json({ message: err });
-        res.json({ message: 'Berhasil', data: results });
+        res.json(results);
     });
 };
 
